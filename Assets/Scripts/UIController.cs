@@ -43,6 +43,7 @@ public class UIController : MonoBehaviour
     // TAPTOSTART TUSUNA BASILDISINDA  --- GIRIS EKRANINDA VE LEVEL BASLARINDA
     public void TapToStartButtonClick()
     {
+        MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
 
         GameController.instance.isContinue = true;
         //PlayerController.instance.SetArmForGaming();
@@ -50,12 +51,15 @@ public class UIController : MonoBehaviour
         GamePanel.SetActive(true);
         SetLevelText(LevelController.instance.totalLevelNo);
         SetGamePlayScoreText();
+        PlayerController.instance.PlayerKossun();
 
     }
 
     // RESTART TUSUNA BASILDISINDA  --- LOOSE EKRANINDA
     public void RestartButtonClick()
     {
+        MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
         GamePanel.SetActive(false);
         LoosePanel.SetActive(false);
         TapToStartPanel.SetActive(true);
@@ -67,12 +71,14 @@ public class UIController : MonoBehaviour
     // NEXT LEVEL TUSUNA BASILDIGINDA... WIN EKRANINDAKI BUTON
     public void NextLevelButtonClick()
     {
+        MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
         SetTapToStartScoreText();
         TapToStartPanel.SetActive(true);
         WinPanel.SetActive(false);
         GamePanel.SetActive(false);
         LevelController.instance.NextLevelEvents();
-        StartCoroutine(StartScreenCoinEffect());
+        //StartCoroutine(StartScreenCoinEffect());
     }
 
 
@@ -223,6 +229,7 @@ public class UIController : MonoBehaviour
         WinPanel.SetActive(false);
         LoosePanel.SetActive(false);
         GamePanel.SetActive(false);
+        PlayerPrefs.SetInt("totalScore", 99999);
         tapToStartScoreText.text = PlayerPrefs.GetInt("totalScore").ToString();
     }
 

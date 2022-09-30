@@ -12,6 +12,8 @@ public class SwerveMovement : MonoBehaviour
 
     [SerializeField] private float _radius;
 
+    [SerializeField] private GameObject _askerParent;
+
     Vector3 centerPosition;
 
     private void Awake()
@@ -21,7 +23,7 @@ public class SwerveMovement : MonoBehaviour
 
     private void Update()
     {
-        if (GameController.instance.isContinue == true)
+        if (GameController.instance.isContinue == true && GameController.instance._hareketiDurdur == false)
         {
             centerPosition = _getPoint.transform.position;
 
@@ -33,6 +35,19 @@ public class SwerveMovement : MonoBehaviour
 
             float distance = Vector3.Distance(transform.position, centerPosition);
 
+            if (_askerParent.transform.childCount > 0 && _askerParent.transform.childCount < 3)
+            {
+                _radius = 2.5f;
+            }
+            else if (_askerParent.transform.childCount >= 3)
+            {
+                _radius = 1.5f;
+            }
+            else
+            {
+                _radius = 3f;
+            }
+
             if (distance > _radius)
             {
                 Vector3 fromOriginToObject = transform.position - centerPosition;
@@ -40,6 +55,6 @@ public class SwerveMovement : MonoBehaviour
                 transform.position = centerPosition + fromOriginToObject;
             }
         }
-       
+
     }
 }
