@@ -122,7 +122,7 @@ public class EnemyScript : MonoBehaviour
 
                 }
 
-                if (_yazacakLevel > 1) //PlayerController.instance._playerLevel
+                if (_yazacakLevel > PlayerController.instance._playerLevel)
                 {
                     _yazacakLevel = _yazacakLevel - 1;
                     _levelTexti.text = "Lv " + _yazacakLevel.ToString();
