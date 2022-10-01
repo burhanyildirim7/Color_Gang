@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
 using TMPro;
+using System.Data;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -44,6 +46,10 @@ public class PlayerController : MonoBehaviour
 
     public float _oyunSonuCarpimDegeri;
 
+    private bool _atesEt;
+
+    private bool _siniriGecti;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -57,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameController.instance.isContinue)
+        if (GameController.instance.isContinue && _atesEt)
         {
             _timer += Time.deltaTime;
 
@@ -69,7 +75,7 @@ public class PlayerController : MonoBehaviour
                 bullet.GetComponent<BulletScript>()._bulletRenkKodu = _renkKodu;
                 bullet.GetComponent<Renderer>().material = _materials[_renkKodu];
 
-                if (_askerParent.transform.childCount > 0)
+                if (_askerParent.transform.childCount > 0 && _siniriGecti == false)
                 {
                     for (int i = 0; i < _askerParent.transform.childCount; i++)
                     {
@@ -183,11 +189,23 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.tag == "FinishCizgisi")
         {
-            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+            //MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
 
             transform.localPosition = new Vector3(0, 1, 0);
             GameController.instance._hareketiDurdur = true;
+            _atesEt = false;
+            _siniriGecti = true;
+            YanindakileriYokEt();
+            //_scriptFireRate = _fireRate / 2;
+
+        }
+        else if (other.gameObject.tag == "FinishBasliyor")
+        {
+            //MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
             _scriptFireRate = _fireRate / 2;
+            _atesEt = true;
+
 
         }
         else
@@ -217,6 +235,24 @@ public class PlayerController : MonoBehaviour
         }
 
         Invoke("KaybettiEkrani", 1f);
+    }
+
+    private void YanindakileriYokEt()
+    {
+        if (_askerParent.transform.childCount > 0)
+        {
+            for (int i = 0; i < _askerParent.transform.childCount; i++)
+            {
+                //_askerParent.transform.GetChild(i).gameObject.transform.DOLocalMove(Vector3.zero, 1f).OnComplete(() => PlayerLevelGuncelle(1));
+                _askerParent.transform.GetChild(i).gameObject.transform.DOLocalMove(Vector3.zero, 1f);
+                //_playerLevel++;
+                //_levelText.text = "Lv " + _playerLevel.ToString();
+            }
+        }
+        else
+        {
+
+        }
     }
 
     public void PlayerKazandi()
@@ -295,6 +331,9 @@ public class PlayerController : MonoBehaviour
         _karakterAnimator.SetBool("Victory", false);
 
         _scriptFireRate = _fireRate;
+
+        _atesEt = true;
+        _siniriGecti = false;
 
         _renkKodu = 0;
         _karakter.GetComponent<Renderer>().material = _materials[_renkKodu];

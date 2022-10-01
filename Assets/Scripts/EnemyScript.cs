@@ -572,7 +572,9 @@ public class EnemyScript : MonoBehaviour
         }
         else if (other.gameObject.tag == "FinishCizgisi")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            EnemyKossun();
+            Invoke("YokEt2", 1.1f);
         }
         else
         {
@@ -583,6 +585,12 @@ public class EnemyScript : MonoBehaviour
     private void YokEt()
     {
         Destroy(gameObject);
+    }
+
+    private void YokEt2()
+    {
+        Destroy(gameObject);
+        PlayerController.instance.PlayerLevelGuncelle(1);
     }
 
     public void AtesEt()
@@ -598,6 +606,13 @@ public class EnemyScript : MonoBehaviour
         _karakterAnimator.SetBool("Attack", true);
         _yerineGecti = true;
         _silah.SetActive(true);
+    }
+
+    private void EnemyKossun()
+    {
+        _silah.SetActive(false);
+        _karakterAnimator.SetBool("Attack", false);
+        _karakterAnimator.SetBool("Run", true);
     }
 
     public void EnemyOyunBitti()

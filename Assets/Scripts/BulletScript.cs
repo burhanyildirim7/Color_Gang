@@ -10,7 +10,7 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 0.75f);
 
         if (_bulletRenkKodu == 0)
         {
@@ -42,6 +42,6 @@ public class BulletScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(Vector3.forward * 30 * Time.deltaTime);
+        transform.Translate(Vector3.forward * 25 * Time.deltaTime);
     }
 }
