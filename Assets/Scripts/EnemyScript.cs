@@ -214,7 +214,7 @@ public class EnemyScript : MonoBehaviour
             {
                 if (PlayerController.instance._playerLevel > _yazacakLevel)
                 {
-                    PlayerController.instance.PlayerLevelGuncelle(-_yazacakLevel);
+                    PlayerController.instance.PlayerLevelGuncelle(-10);
 
 
 
@@ -276,8 +276,8 @@ public class EnemyScript : MonoBehaviour
                 else
                 {
                     GameController.instance.isContinue = false;
-
-                    PlayerController.instance.PlayerDursun();
+                    PlayerController.instance.PlayerLevelGuncelle(-10);
+                    // PlayerController.instance.PlayerDursun();
 
                     _enemyKarakter.SetActive(false);
 
