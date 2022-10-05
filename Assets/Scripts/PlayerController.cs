@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.tag == "FinishCizgisi")
         {
-            //MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
 
             transform.localPosition = new Vector3(0, 1, 0);
             GameController.instance._hareketiDurdur = true;
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.tag == "FinishBasliyor")
         {
-            //MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
 
             _scriptFireRate = _fireRate / 2;
             _atesEt = true;
@@ -287,6 +287,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerLevel = _playerLevel + deger;
         _levelText.text = "Lv " + _playerLevel.ToString();
+        _levelText.gameObject.transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.2f).OnComplete(() => _levelText.gameObject.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f));
 
     }
 
@@ -294,8 +295,8 @@ public class PlayerController : MonoBehaviour
     {
 
         GameController.instance.SetScore(_incomeDegeri);
-        Debug.Log("INCOME --- " + _incomeDegeri);
-        Debug.Log("SCORE ---- " + GameController.instance.score);
+        //Debug.Log("INCOME --- " + _incomeDegeri);
+        //Debug.Log("SCORE ---- " + GameController.instance.score);
     }
 
     public void CarpimDegeriGuncelle(float deger)

@@ -214,7 +214,7 @@ public class EnemyScript : MonoBehaviour
             {
                 if (PlayerController.instance._playerLevel > _yazacakLevel)
                 {
-                    PlayerController.instance.PlayerLevelGuncelle(-10);
+                    PlayerController.instance.PlayerLevelGuncelle(-_yazacakLevel);
 
 
 
@@ -275,66 +275,76 @@ public class EnemyScript : MonoBehaviour
                 }
                 else
                 {
-                    GameController.instance.isContinue = false;
-                    PlayerController.instance.PlayerLevelGuncelle(-10);
-                    // PlayerController.instance.PlayerDursun();
-
-                    _enemyKarakter.SetActive(false);
-
-                    gameObject.GetComponent<Collider>().enabled = false;
-
-                    _yasiyor = false;
-
-                    MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
-
-                    _silah.SetActive(false);
-
-                    _karakterAnimator.SetBool("Run", false);
-                    //_karakterAnimator.SetBool("Attack", false);
-
-                    //_coinSplash.Play();
-
-                    if (PlayerController.instance._renkKodu == 1)
+                    if (PlayerController.instance._playerLevel < 11)
                     {
-                        _bulletEfektList[0].Play();
-                    }
-                    else if (PlayerController.instance._renkKodu == 2)
-                    {
-                        _bulletEfektList[1].Play();
-                    }
-                    else if (PlayerController.instance._renkKodu == 3)
-                    {
-                        _bulletEfektList[2].Play();
-                    }
-                    else if (PlayerController.instance._renkKodu == 4)
-                    {
-                        _bulletEfektList[3].Play();
+                        GameController.instance.isContinue = false;
+                        PlayerController.instance.PlayerDursun();
                     }
                     else
                     {
+                        PlayerController.instance.PlayerLevelGuncelle(-10);
 
+
+                        _enemyKarakter.SetActive(false);
+
+                        gameObject.GetComponent<Collider>().enabled = false;
+
+                        _yasiyor = false;
+
+                        MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
+                        _silah.SetActive(false);
+
+                        _karakterAnimator.SetBool("Run", false);
+                        //_karakterAnimator.SetBool("Attack", false);
+
+                        //_coinSplash.Play();
+
+                        if (PlayerController.instance._renkKodu == 1)
+                        {
+                            _bulletEfektList[0].Play();
+                        }
+                        else if (PlayerController.instance._renkKodu == 2)
+                        {
+                            _bulletEfektList[1].Play();
+                        }
+                        else if (PlayerController.instance._renkKodu == 3)
+                        {
+                            _bulletEfektList[2].Play();
+                        }
+                        else if (PlayerController.instance._renkKodu == 4)
+                        {
+                            _bulletEfektList[3].Play();
+                        }
+                        else
+                        {
+
+                        }
+
+                        if (_enemyRenkKodu == 1)
+                        {
+                            _splashList[0].SetActive(true);
+                        }
+                        else if (_enemyRenkKodu == 2)
+                        {
+                            _splashList[1].SetActive(true);
+                        }
+                        else if (_enemyRenkKodu == 3)
+                        {
+                            _splashList[2].SetActive(true);
+                        }
+                        else if (_enemyRenkKodu == 4)
+                        {
+                            _splashList[3].SetActive(true);
+                        }
+                        else
+                        {
+
+                        }
                     }
 
-                    if (_enemyRenkKodu == 1)
-                    {
-                        _splashList[0].SetActive(true);
-                    }
-                    else if (_enemyRenkKodu == 2)
-                    {
-                        _splashList[1].SetActive(true);
-                    }
-                    else if (_enemyRenkKodu == 3)
-                    {
-                        _splashList[2].SetActive(true);
-                    }
-                    else if (_enemyRenkKodu == 4)
-                    {
-                        _splashList[3].SetActive(true);
-                    }
-                    else
-                    {
 
-                    }
+
                     //Destroy(gameObject);
                 }
 
@@ -441,6 +451,9 @@ public class EnemyScript : MonoBehaviour
                         //GameController.instance.isContinue = false;
 
                         //PlayerController.instance.PlayerDursun();
+                        //PlayerController.instance.PlayerLevelGuncelle(-10);
+
+                        PlayerController.instance.PlayerCoinGuncelle();
 
                         _enemyKarakter.SetActive(false);
 

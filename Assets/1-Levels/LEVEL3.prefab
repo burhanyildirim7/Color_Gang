@@ -393,7 +393,7 @@ Transform:
   - {fileID: 2041392877985616160}
   - {fileID: 2041392877065337885}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6534045501752900901
 GameObject:
@@ -1505,7 +1505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4106093407028119668, guid: 4f637e26c09b745a1b1e27983b14e2f9, type: 3}
       propertyPath: _enemyRenkKodu
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4106093407028119669, guid: 4f637e26c09b745a1b1e27983b14e2f9, type: 3}
       propertyPath: m_RootOrder

@@ -16,9 +16,9 @@ MonoBehaviour:
   clientTokens:
   - 
   appIds:
-  - 0
+  - 1435288400286972
   appLabels:
-  - App Name
+  - Color Gang!
   cookie: 1
   logging: 1
   status: 1

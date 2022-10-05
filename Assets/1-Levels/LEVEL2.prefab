@@ -1594,7 +1594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4106093407028119668, guid: 4f637e26c09b745a1b1e27983b14e2f9, type: 3}
       propertyPath: _enemyRenkKodu
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4106093407028119669, guid: 4f637e26c09b745a1b1e27983b14e2f9, type: 3}
       propertyPath: m_RootOrder

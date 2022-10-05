@@ -35,13 +35,45 @@ public class SwerveMovement : MonoBehaviour
 
             float distance = Vector3.Distance(transform.position, centerPosition);
 
+            if (_askerParent.transform.childCount == 1)
+            {
+                _getPoint.transform.localPosition = new Vector3(0, 1, 0);
+            }
+            else if (_askerParent.transform.childCount == 3)
+            {
+                _getPoint.transform.localPosition = new Vector3(0, 1, 0);
+            }
+            else
+            {
+                _getPoint.transform.localPosition = new Vector3(0, 1, 0);
+            }
+
+
+
+
             if (_askerParent.transform.childCount > 0 && _askerParent.transform.childCount < 3)
             {
-                _radius = 2.5f;
+                if (_askerParent.transform.childCount == 1)
+                {
+                    _radius = 3f;
+                }
+                else
+                {
+                    _radius = 3f;
+                }
+
             }
             else if (_askerParent.transform.childCount >= 3)
             {
-                _radius = 1.5f;
+                if (_askerParent.transform.childCount == 3)
+                {
+                    _radius = 2.5f;
+                }
+                else
+                {
+                    _radius = 2.5f;
+                }
+
             }
             else
             {

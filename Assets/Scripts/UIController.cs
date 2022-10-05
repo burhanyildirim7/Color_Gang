@@ -65,6 +65,7 @@ public class UIController : MonoBehaviour
         TapToStartPanel.SetActive(true);
         LevelController.instance.RestartLevelEvents();
         SetTapToStartScoreText();
+        IncrementalControlScript.instance.ButonKontrol();
     }
 
 
@@ -78,6 +79,7 @@ public class UIController : MonoBehaviour
         WinPanel.SetActive(false);
         GamePanel.SetActive(false);
         LevelController.instance.NextLevelEvents();
+        IncrementalControlScript.instance.ButonKontrol();
         //StartCoroutine(StartScreenCoinEffect());
     }
 
@@ -231,6 +233,7 @@ public class UIController : MonoBehaviour
         GamePanel.SetActive(false);
         PlayerPrefs.SetInt("totalScore", 99999);
         tapToStartScoreText.text = PlayerPrefs.GetInt("totalScore").ToString();
+        IncrementalControlScript.instance.ButonKontrol();
     }
 
 
